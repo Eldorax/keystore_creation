@@ -1,0 +1,28 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+mainClassName = "GenKeystore"
+
+repositories {
+    mavenCentral()
+    maven {
+    	url 'http://www.janus-project.org/maven'
+    }
+}
+
+
+dependencies {
+	compile fileTree(dir: './libs', include: '*.jar')
+}
+
+[compileJava, compileTestJava]*.options.collect {options -> 
+options.encoding = 'UTF-8'} 
+
+eclipse {
+  classpath {
+    downloadSources = true
+    downloadJavadoc = true
+  }
+}
