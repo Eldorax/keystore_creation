@@ -67,7 +67,7 @@ public class GenKeystore {
 		*/
 
 		X509Certificate[] cert_chain = new X509Certificate[1];
-		cert_chain[0] = cert_gen.generateX509Certificate(keys.getPrivate(), "BC"); // CA private key (auto signed)
+		cert_chain[0] = cert_gen.generateX509Certificate(keys.getPrivate(), "BC"); //CA private key (auto signed)
 
 		ks.setEntry("SXP",
 				new KeyStore.PrivateKeyEntry(keys.getPrivate(), cert_chain),
