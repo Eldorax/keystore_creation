@@ -16,9 +16,9 @@ import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 
 //Source : http://docs.oracle.com/javase/6/docs/api/java/security/KeyStore.html
-//	   http://docs.oracle.com/javase/6/docs/api/java/security/KeyStore.PrivateKeyEntry.html
+//	       http://docs.oracle.com/javase/6/docs/api/java/security/KeyStore.PrivateKeyEntry.html
 //         http://stackoverflow.com/questions/10956956/using-rsa-encryption-in-java-without-bouncycastle
-//	   http://www.bouncycastle.org/wiki/display/JA1/X.509+Public+Key+Certificate+and+Certification+Request+Generation
+//	       http://www.bouncycastle.org/wiki/display/JA1/X.509+Public+Key+Certificate+and+Certification+Request+Generation
 
 
 public class GenKeystore {
@@ -39,7 +39,7 @@ public class GenKeystore {
 
 		//Création de la paire de clef.
 		KeyPairGenerator key_gen = KeyPairGenerator.getInstance("RSA");		
-		key_gen.initialize(1048);
+		key_gen.initialize(1024);
 		KeyPair keys = key_gen.genKeyPair();
 		//byte[] private_key = keys.getPrivate().getEncoded(); //clef privée encodé.
 
@@ -55,7 +55,7 @@ public class GenKeystore {
 		cert_gen.setNotAfter(new Date(System.currentTimeMillis() + 365 * 24 * 60 * 60 * 1000));
 		cert_gen.setSubjectDN(cn);
 		cert_gen.setPublicKey(keys.getPublic());
-		cert_gen.setSignatureAlgorithm("MD5WithRSA");
+		cert_gen.setSignatureAlgorithm("MD5WithRSA"); //SHA256withRSA
 
 		/*
 		certGen.addExtension(X509Extensions.AuthorityKeyIdentifier, false,new
