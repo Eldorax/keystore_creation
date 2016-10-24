@@ -51,8 +51,8 @@ public class GenKeystore {
 		X500Principal cn = new X500Principal("CN=SXP");
 		cert_gen.setSerialNumber(new BigInteger("123456789"));
 		cert_gen.setIssuerDN(cn);
-		cert_gen.setNotBefore(new Date());
-		cert_gen.setNotAfter(new Date());
+		cert_gen.setNotBefore(new Date(System.currentTimeMillis() - 24 * 60 * 60 * 1000));
+		cert_gen.setNotAfter(new Date(System.currentTimeMillis() + 365 * 24 * 60 * 60 * 1000));
 		cert_gen.setSubjectDN(cn);
 		cert_gen.setPublicKey(keys.getPublic());
 		cert_gen.setSignatureAlgorithm("MD5WithRSA");
@@ -61,6 +61,7 @@ public class GenKeystore {
 		certGen.addExtension(X509Extensions.AuthorityKeyIdentifier, false,new
 		AuthorityKeyIdentifierStructure(caCert));
 
+		//Ca fonctionne pas à cause des type de clef, peut être pas utile.
 		cert_gen.addExtension(X509Extensions.SubjectKeyIdentifier, false,
 		    new SubjectKeyIdentifierStructure( keys.getPublic().getEncoded() ));
 		*/
